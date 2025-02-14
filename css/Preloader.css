@@ -1,0 +1,37 @@
+.preloader{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, #2c5364,#203a43);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+#svg {
+  width: 12vw;
+  height: 12vw;
+  stroke: #fff;
+  fill-opacity: 0;
+  stroke-width: 3px;
+  stroke-dasharray: 4500;
+  stroke-dashoffset: 4500;
+  animation: draw 3s linear infinite;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 4500;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 4500;
+  }
+}

@@ -1,0 +1,292 @@
+main{
+  background: linear-gradient(172deg, #00030b, #063054);
+}
+header{
+  position: relative;
+}
+figure img{
+  position: relative;
+  width: 19.6%;
+}
+
+.navbar-brand img{
+  position: relative;
+  width: 7%;
+}
+.but{
+  text-align: center;
+  align-items: center;
+}
+.but a{
+  position: relative;
+  padding: 10px;
+  font-size: 19px;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.25s ease-in-out;
+  opacity: 0.5;
+  transition: .5s;
+}
+.but a:hover{
+  border-bottom: 2px solid #0ef !important;
+  border-radius: 15px;
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  color: #0ef;
+}
+
+.but button{
+  background: linear-gradient(to right,#0ACEFE,#26999B);
+}
+.but button:hover{
+  background: transparent;
+  border: 1px solid #0ACEFE;
+  color: #0ACEFE;
+  transform: scale(1);
+  align-items: center;
+}
+
+.menu2{
+  display: none;
+}
+#hamburger i{
+  display: none;
+  font-size: 25px;
+  font-weight: 700;
+}
+#serach i{
+  color: #fff;
+  font-size: 1.4vw;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0 0 0 10px;
+}
+
+#input {
+  position: absolute;
+  display: none;
+  width: 59%;
+  right: 4.5%;
+  padding: 1vw;
+  z-index: 1000;
+  background: transparent;
+  backdrop-filter: blur(15px);
+  color: #fff;
+  border-radius: 2vw;
+  border: solid 1px #0ACEFE;
+}
+#input::placeholder{
+  font-size: 1.4vw;
+  font-weight: 600;
+  color: #fff;
+}
+.bannerContent h1{
+  color: #fff;
+  font-size: 47px;
+  font-weight: 500;
+}
+
+.bannerContent h1 span{
+  color: #0fc7f5;
+}
+
+.bannerContent p{
+  color: #fff;
+  font-size: 16px;
+}
+
+.bannerContent ul{
+  list-style: none;
+}
+.bannerContent li{
+  font-size: 22px;
+}
+.bannerContent li i{
+  color: #fff;
+}
+
+.bannerContentBtn button{
+  width: 30%;
+}
+.bannerContentBtn button:first-child{
+  color: #fff;
+  border-radius: 9px;
+  width: 10.6vw;
+  border: transparent;
+  background: linear-gradient(to right,#0ACEFE,#26999B);
+}
+
+.bannerContentBtn button:first-child:hover{
+  border-radius: 0 19px 0 19px;
+  transition: .8s;
+  transform: scale(1.1);
+  background: linear-gradient(to right,#297f80,#192a74);
+}
+
+.bannerContentBtn button:last-child{
+  border: #3a3a3a7b solid 1px;
+  border-radius: 9px;
+  color: #fff;
+  background-color: transparent;
+}
+
+.bannerContentBtn button:last-child:hover{
+  border-radius: 0 19px 0 19px;
+  transform: scale(1.1);
+  transition: .8s;
+  border: 1px solid #0ACEFE;
+  
+}
+
+.counterSection{
+  text-align: center;
+}
+.counterSection h3{
+  color: #fff;
+}
+.counterSection p{
+  color: #0ef;
+}
+
+.highlights{
+  background-color: #F7FAFF;
+}
+
+.highlights h2{
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.highlights p{
+  font-size: 18px;
+}
+
+.book i{
+  font-size: 45px;
+}
+.details h3{
+  font-size: 19px;
+}
+
+.details p{
+  font-size: 14px;
+}
+
+.formpage img{
+  width: 100%;
+}
+
+.img2 img{
+  width: 80%;
+}
+
+.img3 img{
+  width: 30vw;
+  height: 30.19vw;
+}
+
+.img4 img{
+  width: 66.7%;
+}
+
+.allimg:hover{
+  border-radius: 0 19px 0 19px;
+  transition: .4s;
+  transform: scale(1.1);
+  border: 3px dotted #0ACEFE;
+}
+.counterSection:hover{
+  transition: .5s;
+  transform: scale(1.1);
+  cursor: default;
+  border: 2px dashed #0ACEFE;
+}
+.counterSection .col:hover{
+  transition: .5s;
+  transform: scale(1.1);
+  cursor: default;
+}
+.top3:has(.book:hover) .book:not(:hover){
+  filter: blur(9px);
+}
+.top3 .book:hover{
+  background: linear-gradient(to right,#0ACEFE,#26999B);
+  transition:.5s;
+  transform: scale(1.1);
+  cursor: default;
+}
+.but3{
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+#learn{
+  margin-right: 20px;
+  cursor: pointer;
+  margin-top: 30px;
+  background: linear-gradient(to right,#0ACEFE,#26999B);
+  padding: 0.7vw 1.5vw;
+  border-radius: 9px;
+  border: transparent;
+}
+#learn:hover{
+  border-radius: 0 19px 0 19px;
+  transition: .4s;
+  transform: scale(1.1);
+}
+#sign{
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+}
+#sign:hover{
+  border-radius: 0 19px 0 19px;
+  color: #fff;
+  border: 1px solid #063054;
+  padding: 0.7vw;
+  background: #06305499;
+  transition: 0.3s;
+}
+#sign i{
+  color: #000;
+}
+
+#nan{
+  border: 2px dotted #0ACEFE;
+
+}
+
+.but4{
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+
+#eclub{
+  margin-right: 20px;
+  cursor: pointer;
+  margin-top: 30px;
+  background: linear-gradient(to right,#0ACEFE,#26999B);
+  padding: 0.7vw 1.5vw;
+  border-radius: 9px;
+  border: transparent;
+}
+#eclub:hover{
+  border-radius: 0 19px 0 19px;
+  transition: .4s;
+  transform: scale(1.1);
+}
+.top4:has(.book1:hover) .book1:not(:hover){
+  filter: blur(9px);
+}
+.top4 .book1:hover{
+  background: linear-gradient(to right,#0ACEFE,#26999B);
+  transition:.5s;
+  transform: scale(1.1);
+  cursor: default;
+}
+.book1 i{
+  font-size: 45px;
+}
