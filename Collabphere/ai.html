@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI/ML Club</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.0.7/countUp.min.js"></script>
+    <style>
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #0061ff, #60efff);
+        }
+
+        body {
+            background-color: rgb(244, 245, 245); /* Main background color */
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: rgb(244, 245, 245); /* Link color matches background */
+            font-weight: bold;
+            font-size: 16px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: lightblue;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: white;
+            left: 0;
+            bottom: -5px;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .btn {
+            background-color: #3a4fda;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 19px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            width: 50px;
+            cursor: pointer;
+            margin-right: 53px;
+        }
+
+        .hero {
+            margin-top: 80px; /* Space for the fixed header */
+            height: 400px;
+            background: var(--primary-gradient); /* Or a solid color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            /* Remove overflow: hidden */
+        }
+
+    
+       /* Card Styles */
+
+.cards-container {
+    padding: 4rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: rgb(218, 171, 171);
+    border-radius: 30px;
+    padding: 2rem;
+    width: 300px;
+    box-shadow: 0 10px 20px rgba(61, 28, 222, 0.133);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    color:#363fe7;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Animation */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(61, 28, 222, 0.2);
+}
+
+/* Card Image - Centered */
+.card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: block;
+}
+
+        /* Counter Section */
+        .counter-section {
+    background: var(--primary-gradient);
+    padding: 4rem 2rem;
+    text-align: center;
+    color: white;
+}
+
+.counter {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    color: #ff6f61;  /* Optional: to add a nice color for the counter */
+}
+
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-item {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Events Section */
+        .events {
+            padding: 4rem 2rem;
+            background: #f5f5f5;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .event-card:hover {
+            transform: scale(1.02);
+        }
+
+        /* Reviews Section */
+        .reviews {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.review-card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.review-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.reviewer-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.star-rating span {
+    color: gold;
+    font-size: 1.2rem;
+}
+
+h4 {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #555;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Responsive: Stack reviews on smaller screens */
+@media (max-width: 768px) {
+    .review-card-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .review-card-container {
+        grid-template-columns: 1fr; /* 1 card per row on small screens */
+    }
+}
+
+
+        /* FAQ Section */
+        .faq {
+    padding: 4rem 2rem;
+    background: #f5f5f5;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 15px;
+    padding: 1rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.faq-item:hover {
+    background-color: #e0e0e0;
+}
+
+.faq-answer {
+    display: none;
+    padding-top: 1rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Add transition for smooth reveal */
+.faq-answer {
+    transition: max-height 0.3s ease-out, padding-top 0.3s ease-out;
+    max-height: 0;
+    overflow: hidden;
+}
+
+/* For visible answers */
+.faq-answer.open {
+    display: block;
+    max-height: 1000px;
+    padding-top: 1rem;
+}
+
+
+        /* Footer */
+        footer {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .nav-left, .nav-right {
+                gap: 1rem;
+            }
+            
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Clubs</a></li>
+                <li><a href="#">Event</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a class="btn" href="#">Login</a></li>
+                <li><a class="btn" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+        <div class="logo">
+            <img src="USER_LOGO.png" alt="User Account">
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to the AI/ML Club</h1> 
+        <br>
+        <p>Explore the world of Artificial Intelligence and Machine Learning</p>
+    </section>
+    
+
+
+    <section class="cards-container">
+        <div class="card animate-fade-in">
+            <img src="SIR.png" alt="Club Head">
+            <h3>Club Head</h3>
+            <p>Mrugendra Raheval</p>
+            <p>Assistant Professor</p>
+            <p>CE, CSPIT</p>
+        </div>
+        
+
+        <div class="card animate-fade-in">
+
+            <img src="Leader.png" alt="Club Leader">
+            <h3>Club Leader</h3>
+            <p>Manav Vasi</p>
+            <p>Student at 3 year</p>
+            <p>CE,CSPIT</p>
+
+        </div>
+
+    </section>
+
+
+    <section class="counter-section">
+        <h2>Our Growing Community</h2>
+        <div id="memberCount" class="counter">0</div>
+        <p>Active Members</p>
+    </section>
+    
+
+    <section class="benefits">
+        <h2>Club Benefits</h2>
+        <div class="benefit-grid">
+            <div class="benefit-item animate-fade-in">
+                <i class="fas fa-laptop-code fa-2x"></i>
+                <h3>Hands-on Projects</h3>
+                <p>Work on real-world AI/ML projects</p>
+            </div>
+            <div class="benefit-item animate-fade-in">
+                <i class="fas fa-users fa-2x"></i>
+                <h3>Networking</h3>
+                <p>Connect with industry experts</p>
+            </div>
+            <div class="benefit-item animate-fade-in">
+                <i class="fas fa-certificate fa-2x"></i>
+                <h3>Certifications</h3>
+                <p>Earn recognized certifications</p>
+            </div>
+            <div class="benefit-item animate-fade-in">
+                <i class="fas fa-certificate fa-2x"></i>
+                <h3>Mini competitions</h3>
+                <p>Practice For Placement Like preperation </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="events">
+        <h2>Upcoming Events</h2>
+        <div class="event-card animate-fade-in">
+            <h3>AI Workshop</h3>
+            <p>Date: March 1, 2025</p>
+            <p>Learn about the latest AI technologies</p>
+        </div>
+        <div class="event-card animate-fade-in">
+            <h3>ML Hackathon</h3>
+            <p>Date: March 15, 2025</p>
+            <p>24-hour coding challenge</p>
+        </div>
+    </section>
+
+
+    <section class="reviews">
+        <h2>Student Reviews</h2>
+        
+        <div class="review-card-container">
+            <div class="review-card animate-fade-in">
+                <div class="review-header">
+                    <img src="Student1.png" alt="Mike Johnson" class="reviewer-img">
+                    <div class="star-rating">
+                        <span>★★★★★</span>
+                    </div>
+                </div>
+                <p>"Amazing learning experience! The projects helped me land my dream job."</p>
+                <h4>- Aryan Chavada</h4>
+            </div>
+    
+            <div class="review-card animate-fade-in">
+                <div class="review-header">
+                    <img src="student2.jpg" alt="Sarah Williams" class="reviewer-img">
+                    <div class="star-rating">
+                        <span>★★★★★</span>
+                    </div>
+                </div>
+                <p>"The mentorship program is exceptional. Highly recommended!"</p>
+                <h4>- Dhyey Chudasama</h4>
+            </div>
+    
+            <div class="review-card animate-fade-in">
+                <div class="review-header">
+                    <img src="student3.png" alt="John Doe" class="reviewer-img">
+                    <div class="star-rating">
+                        <span>★★★★</span>
+                    </div>
+                </div>
+                <p>"Great course! Learned so much, but could use more practice material."</p>
+                <h4>- Prit Dedaniya</h4>
+            </div>
+            
+            <!-- Second Row of Reviews -->
+            <div class="review-card animate-fade-in">
+                <div class="review-header">
+                    <img src="student2.jpg" alt="Emma Lee" class="reviewer-img">
+                    <div class="star-rating">
+                        <span>★★★★★</span>
+                    </div>
+                </div>
+                <p>"Fantastic learning experience! The instructors are top-notch."</p>
+                <h4>- Devid </h4>
+            </div>
+    
+            <div class="review-card animate-fade-in">
+                <div class="review-header">
+                    <img src="student3.png" alt="Luke Smith" class="reviewer-img">
+                    <div class="star-rating">
+                        <span>★★★★</span>
+                    </div>
+                </div>
+                <p>"The community is very supportive and the projects are very practical."</p>
+                <h4>- Luke Smith</h4>
+            </div>
+    
+            <div class="review-card animate-fade-in">
+                <div class="review-header">
+                    <img src="Student1.png" alt="Jane Doe" class="reviewer-img">
+                    <div class="star-rating">
+                        <span>★★★</span>
+                    </div>
+                </div>
+                <p>"Good content but I think there could be more resources for beginners."</p>
+                <h4>- Jane Doe</h4>
+            </div>
+        </div>
+    </section>
+    
+    
+
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+    
+        <div class="faq-item">
+            <h3>How can I join the club?</h3>
+            <div class="faq-answer">
+                <p>Simply click the Sign Up button and fill out the registration form.</p>
+            </div>
+        </div>
+    
+        <div class="faq-item">
+            <h3>What are the membership fees?</h3>
+            <div class="faq-answer">
+                <p>Membership is free for all students!</p>
+            </div>
+        </div>
+    
+        <div class="faq-item">
+            <h3>How do I contact support?</h3>
+            <div class="faq-answer">
+                <p>You can contact support via the "Contact Us" page or email us directly.</p>
+            </div>
+        </div>
+    </section>
+    
+
+    <footer>
+        <p>&copy; 2025 AI/ML Club. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Counter Animation
+const countUp = new CountUp('memberCount', 0, 50, 0, 2.5, {
+    useEasing: true,
+    useGrouping: true,
+    separator: ',',
+    suffix: '+',  // Add the '+' sign at the end
+});
+countUp.start();
+
+
+        // FAQ Toggle
+document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const answer = item.querySelector('.faq-answer');
+        
+        // Toggle the visibility of the answer
+        if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+        } else {
+            answer.style.display = 'block';
+        }
+
+        // Add the 'open' class for smooth transitions
+        answer.classList.toggle('open');
+    });
+});
+
+        // Intersection Observer for animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in');
+        } else {
+            entry.target.classList.remove('animate-fade-in');
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.animate-fade-in').forEach((el) => {
+    observer.observe(el);
+});
+
+    </script>
+</body>
+</html>

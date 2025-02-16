@@ -1,0 +1,196 @@
+/* Reset and General Styling */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Updated font */
+    background: linear-gradient(45deg, #0077ff, #00c9ff);
+    color: #ffffff;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: rgba(0, 0, 0, 0.0); /* Adjusted for more transparency */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    backdrop-filter: blur(10px);
+}
+
+/* Navigation Bar */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: rgb(244, 245, 245);
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s;
+    position: relative;
+}
+
+nav a:hover {
+    color: rgb(21, 10, 244);
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: white;
+    left: 0;
+    bottom: -5px;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Button Styling */
+.btn {
+    background-color: #253ede; /* Blue background */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 19px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05);
+}
+
+/* User Icon */
+.logo img {
+    width: 50px;
+    cursor: pointer;
+    margin-right: 53px;
+}
+
+/* Hero Section */
+.hero {
+    margin-top: 100px;
+    font-size: 3rem;
+    animation: fadeIn 1.5s ease-in-out;
+}
+.hero span {
+    color: #000dff;
+    font-size: bold;
+}
+
+/* Join Button */
+.join-btn {
+    padding: 12px 25px;
+    font-size: 1.7rem;
+    border: none;
+    background: rgb(4, 33, 249);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 30px;
+    box-shadow: 0 0 15px rgba(249, 249, 249, 0.5);
+}
+
+.join-btn:hover {
+    background: rgb(70, 227, 23);
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.7);
+}
+
+/* Clubs Section */
+.clubs {
+    margin: 100px auto;
+    width: 80%;
+}
+
+.club {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.club::before {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: rgba(255, 255, 255, 0.1);
+    top: -50%;
+    left: -50%;
+    transform: rotate(45deg);
+    transition: 0.5s;
+}
+
+.club:hover::before {
+    left: 150%;
+}
+
+.club-info {
+    flex: 1;
+    text-align: left;
+}
+
+.club-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.club-image img {
+    width: 230px;
+    border-radius: 10px;
+}
+
+.join-btn1 {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #e5f906;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 90px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.join-btn1:hover {
+    background: #ffdb4d;
+}
+
+
+footer {
+    background: linear-gradient(135deg,#00c9ff);
+    padding: 50px 10%;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
