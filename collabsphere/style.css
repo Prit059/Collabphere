@@ -1,0 +1,58 @@
+
+.modal-body{
+  padding: 0%;
+}
+.cross:active {
+  /* color: #fff !important;  Changes color when button is clicked  */
+  text-decoration: none;
+  border: none;}
+ .btn-close {
+  position: absolute;
+  right: 8px;
+  top: 10px;
+  z-index: 1050;
+}
+.drk:after{
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom:0;
+  left: 0;
+  right: 0;
+  background: black;
+  opacity: 0.7;
+  z-index: 1;
+}
+.carousel-caption {
+  z-index: 2;
+} 
+
+.carousel-item img {
+  height: 590px; /* Set a fixed height for the image */
+  width: 100%;   /* Make the image stretch to fill the container's width */
+  object-fit: cover;  /* Ensure the image covers the area without distorting */
+  object-position: center;  /* Center the image so that important content remains visible */
+}
+.form-check{
+  padding: 0.3rem;
+  margin-left: 1.2rem;
+}
+.interest{
+  margin-bottom: 0.5rem;
+}
+.success{
+  overflow-y: scroll;
+  height: 520px;
+}
+.profile{
+  padding: 2px;
+  margin-left: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.dropdown-menu .dropdown-item {
+  pointer-events: none; /* Disable clicking on the items */
+  cursor: default; /* Make cursor non-clickable */
+  color: black; /* Make text look like normal text, not a link */
+}
