@@ -1,0 +1,157 @@
+.details h3{
+  font-size: 19px;
+}
+
+.details p{
+  font-size: 14px;
+}
+
+#eclub{
+  margin-right: 20px;
+  cursor: pointer;
+  margin-top: 30px;
+  background: linear-gradient(to right,#0ACEFE,#26999B);
+  padding: 0.7vw 1.5vw;
+  border-radius: 9px;
+  border: transparent;
+}
+#eclub:hover{
+  border-radius: 0 19px 0 19px;
+  transition: .4s;
+  transform: scale(1.1);
+}
+#eclub a{
+  text-decoration: none;
+  color: #000;
+}
+
+
+.book1{
+  height: 100%;
+}
+
+.book1 i{
+  font-size: 45px;
+}
+
+.but4{
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+}
+.ej{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transform: translate(0%,20%);
+}
+.ej button{
+  margin: 10px 0 10px 10px;
+  padding: 0.7vw 1.5vw;
+  color: #fff;
+  background: linear-gradient(to right,#080477,#050909);
+  border: none;
+  border-radius: 5px;
+}
+.ej button a{
+  text-decoration: none;
+  color: #fff;
+}
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 22%;
+  left: 27%;
+  width: 50%;
+  height: 70%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal is on top */
+}
+
+/* Modal Box */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Disable background scrolling when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Button Styling */
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.modal-content h3{
+  color: #fff;
+}
+.c1{
+  margin-top: 10px;
+}
+.modal-content button {
+  width: 30%;
+  padding: 10px;
+  margin: 5px 0 5px 250px;
+  border: none;
+  font-size: 1.2vw;
+  cursor: pointer;
+}
+
+.modal-content .btn-success {
+  background: linear-gradient(to right,#0ACEFE,#26999B);
+  color: white;
+}
+
+.modal-content .btn-danger {
+  background: linear-gradient(to right,#0ACEFE,#26999B);
+  color: white;
+}
+
+
+.add-club {
+  cursor: pointer;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, background 0.3s;
+}
+
+.add-club:hover {
+  transform: scale(1.05);
+  background: #f8f8f8;
+}
+#addnew{
+  /* margin-top: 4vw; */
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transform: translate(0%,35%);
+}
+
+.preview-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-top: 10px;
+}
+
+.club-image {
+  width: 30%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}

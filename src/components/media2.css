@@ -1,0 +1,173 @@
+@media only screen and (min-width: 200px) and (max-width:575px){
+  main{
+    height: 150vw;
+  }
+  .bannerContent h1{
+    font-size: 50px;
+    font-weight: 500;
+    transform: translate(18.5%,00%);
+  }
+
+  .btu2{
+    width: 20px !important;
+    transform: translate(-45.1%,00%);
+  }
+  
+  .btn-outer{
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    justify-content: center !important;
+  }
+  .fig{
+    text-align: center;
+  }
+  .but a{
+    display: none;
+  }
+  .but button{
+    display: none;
+  }
+  .icon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: 100%; 
+    margin: 0;
+  }
+  #hamburger{
+    position: relative;
+    right: 0 !important;
+  }
+  #hamburger i{
+    color: #fff;
+    font-size: 30px;  
+    display: initial !important;
+  }
+  .allimg{
+    align-items: center !important;
+  }
+  .img1 img{
+    margin-left: 44px;
+  }
+  .allimg .img2 img{
+    margin-left: 45px;
+  }
+  .allimg .img3{
+    align-items: center !important;
+  }
+  .allimg .img3 img{
+    width: 89vw;
+    height: 89vw;
+    align-items: center !important;
+  }
+  .allimg .img4{
+    align-items: center;
+    margin-left: 70px;
+  }
+  .menu2{
+    position: absolute;
+    flex-direction: column;
+    top: 100%;
+    background-color: transparent;
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    z-index: 1000 !important;
+    width: 95%;
+    height: 290px;
+    gap: 20px;
+    text-align: center;
+    border-radius: 19px;
+    border: dotted 4px #0ACEFE;
+  }
+  .menu2 a{ 
+    text-decoration: none !important;
+    display: initial;
+    color: #fff;
+    font-size: 25px !important;
+    font-weight: 500;
+  }
+  
+  .icon{
+    position: relative;
+    left: 0 !important;
+  }
+  .icon i{
+    color: #fff;
+    font-size: 5vw !important;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0 0 0 10px;
+  }
+  
+  #input {
+    position: absolute;
+    display: none;
+    left: 15%;
+    margin-top: 69px;
+    width: 71% !important;
+    padding: 6.5px;
+    z-index: 1000 !important;  
+    background: transparent;
+    backdrop-filter: blur(15px);
+    color: #fff;
+    border-radius: 50px !important;
+    border: solid 1px #0ACEFE;
+  }
+  #input::placeholder{
+    padding: 0 0 0 10px ; 
+    font-size: 4vw !important;
+  }
+ 
+  .bannerContent br{
+    display: none;
+  }
+  .bannerContent p{
+    font-size: 25px;
+    transform: translate(9.1%,00%);
+  }
+  .bannerContent li{
+    font-size: 20px !important;
+  }
+  .bannerContentBtn{
+    margin-top: 15px;
+    flex-direction: column;
+  }
+  .bannerContentBtn button{
+    width: 100% !important;
+  }
+  
+  .highlights h2{
+    font-size: 27px !important;
+  }
+  
+  .highlights p{
+    font-size: 15px !important;
+  }
+
+  .but3{
+    display: flex;
+    flex-direction: column;
+  }
+  #learn{
+    width: 90%;
+    padding: 12px !important;
+    margin: 16px;
+    /* flex-direction: column; */
+  }
+
+  #eclub{
+    width: 90%;
+    padding: 12px !important;
+    margin: 17px;
+  }
+
+  
+}
+
+@media (min-width: 1400px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+      max-width: 1170px;
+  }
+}

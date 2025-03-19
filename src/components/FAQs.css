@@ -1,0 +1,55 @@
+.faqs{
+  background: linear-gradient(172deg, #00030b, #063054);
+  height: 50vw;
+}
+#faqh1{
+  margin-top: 5vw;
+  color: #fff;
+  font-size: 2.5vw;
+  transform: translate(47%,0);
+}
+#faqp{
+  color: #fff;
+  font-size: 1.4vw;
+  transform: translate(33%,0);
+}
+
+.accordion{
+  width: 90%;
+  margin: 0 auto;
+  padding: 2vw;
+}
+.accordion-item{
+  color: #000;
+  margin: 1vw;
+  background: linear-gradient(to left, #056770c3,rgba(0, 238, 255, 0.423));
+  border: none;
+}
+
+.accordion-item h2 button{
+  color: #000;
+  background: linear-gradient(to left, #056770c3,rgba(0, 238, 255, 0.423));
+}
+
+#faqimg{
+  width: 120%;
+}
+
+@media only screen and (min-width: 200px) and (max-width:575px){
+  .faqs{
+    height: 100vh;
+  }
+  #faqh1{
+    font-size: 40px;
+    transform: translate(38%,0);
+  }
+  #faqp{
+    font-size: 14px;
+    transform: translate(10%,0);
+  }
+  #faqimg{
+    transform: translate(0,30%);
+    width: 90%;
+  }
+  
+}
