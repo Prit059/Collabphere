@@ -1,0 +1,149 @@
+.login{
+  background: url("./images/blue curve.png");
+  width: 100%;
+  height: 53.7vw;
+}
+.logo img{
+  transform: translate(100%,140%);
+  width: 220px;
+  border-radius: 20px;
+}
+
+.mainuser{
+  width: 35.5vw;
+  padding: 2.5vw;
+  /* background-color: #000; */
+  transform: translate(150%,-10%);
+  background: linear-gradient(172deg, #00030b, #063054);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.limg{
+  transform: translate(20%,0%);
+  text-align: center;
+  align-items: center;
+  display: flex;
+}
+.limg img{
+  width: 8vw;
+}
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.user{
+  margin: 2.5vw;
+ display: flex;
+ flex-direction: column; 
+}
+
+.login h2{
+  color: #fff;
+  font-size: 2.2vw;
+}
+
+.user input{
+  color: #fff;
+  font-size: 1.3vw;
+  margin: 0.3vw 0;
+  width: 25.5vw;
+  padding: 0.5vw;
+  border-radius: 15px;
+  background-color: rgba(255, 255,255,0.2);
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+.user input::placeholder{
+  color: #fff;
+  font-size: 1.2vw;
+}
+.user input:focus{
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid #000;
+}
+
+.user button{
+  font-size: 1.5vw;
+  margin: 1.5vw 0;
+  padding: 0.2vw;
+  width: 25.5vw;
+  border-radius: 15px;
+  background: #4a90e2;
+}
+
+.forgot{
+  text-decoration: none;
+  color: aqua;
+  margin: 0 2.6vw;
+  font-size: 1.2vw;
+}
+.forgot:hover{
+  text-decoration: underline;
+  color: chocolate;
+}
+.mainuser p{
+  text-decoration: none;
+  color: #fff;
+  margin: 0 2.6vw;
+  font-size: 1.2vw;
+}
+
+#signup{
+  text-decoration: none;
+  color: aqua;
+}
+#signup:hover{
+  text-decoration: underline;
+  color: chocolate;
+}
+
+/* Google Login Button Styles */
+.google-login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  color: #444;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.google-login-btn:hover {
+  background-color: #f8f8f8;
+}
+
+.google-logo {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
+
+/* Divider Styles */
+.oauth-divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  color: #777;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.divider-text {
+  padding: 0 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
