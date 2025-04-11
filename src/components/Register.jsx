@@ -1,21 +1,57 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./Register.css";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+  const validateForm = () => {
+    let formErrors = {};
+    const gmailRegex = /^[ceCE0-9._%+-]+@charusat\.edu\.in$/;
+    const strongPassword = /^(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/;
+
+    if (!name.trim()) formErrors.name = "Name is required";
+
+    if (!email) {
+      formErrors.email = "Email is required";
+    } else if (!gmailRegex.test(email)) {
+      formErrors.email = "Email must Your College gmail address and CE-(Computer Department) Only Register";
+    }
+
+    if (!password) {
+      formErrors.password = "Password is required";
+    } else if (!strongPassword.test(password)) {
+      formErrors.password =
+        "Password must be at least 8 characters and include a number and special character";
+    }
+
+    if (confirmPassword !== password) {
+      formErrors.confirmPassword = "Passwords do not match";
+    }
+
+    setErrors(formErrors);
+    return Object.keys(formErrors).length === 0;
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/register", {
+    if (!validateForm()) return;
+
+    const response = await fetch("http://localhost:5001/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password }),
     });
+
     const data = await response.json();
+
     if (response.ok) {
+      localStorage.setItem("Username", data.name);
       navigate("/login");
     } else {
       alert(data.error);
@@ -23,35 +59,59 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleRegister}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Sign Up</button>
-      </form>
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+    <div className="register">
+      <div className="slogo">
+        <img src="./images/cspit.webp" alt="college logo" />
+      </div>
+
+      <div className="inr">
+        <div className="signimg">
+          <img src="./images/LOGO.png" alt="logo" />
+          <h2>Sign Up</h2>
+        </div>
+
+        <form onSubmit={handleRegister}>
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          {errors.name && <span className="error">{errors.name}</span>}
+
+          <input
+            type="email"
+            placeholder="Email (college Mail Address)"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {errors.email && <span className="error">{errors.email}</span>}
+
+          <input
+            type="password"
+            placeholder="Password (min 8 chars, number & special char)"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {errors.password && <span className="error">{errors.password}</span>}
+
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          {errors.confirmPassword && (
+            <span className="error">{errors.confirmPassword}</span>
+          )}
+
+          <button type="submit">Sign Up</button>
+        </form>
+
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      </div>
     </div>
   );
 };

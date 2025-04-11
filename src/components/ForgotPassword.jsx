@@ -1,41 +1,86 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "./ForgotPassword.css";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleForgotPassword = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/forgot-password", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    });
-    const data = await response.json();
-    if (response.ok) {
-      alert(data.message);
-    } else {
-      alert(data.error);
+    setError("");
+    setMessage("");
+
+    try {
+      const response = await fetch("http://localhost:5001/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, newPassword }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Password reset failed");
+      }
+
+      setMessage(data.message || "Password reset successfully");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    } catch (err) {
+      setError(err.message);
     }
   };
 
   return (
-    <div>
-      <h2>Forgot Password</h2>
-      <form onSubmit={handleForgotPassword}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <button type="submit">Submit</button>
+    <>
+    <div className="forgot">
+    <div className="logo">
+        <img src="./images/cspit.webp" alt="" />
+      </div>
+    <div className="forgot-password-container">
+      <h2>Reset Password</h2>
+      
+      {message && <div className="success-message">{message}</div>}
+      {error && <div className="error-message">{error}</div>}
+
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            />
+        </div>
+
+        <div className="form-group">
+          <label>New Password:</label>
+          <input
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            required
+            minLength="6"
+            />
+        </div>
+
+        <button type="submit" className="reset-button">
+          Reset Password
+        </button>
       </form>
-      <p>
-        Remember your password? <Link to="/login">Login</Link>
-      </p>
+
+      <div className="back-to-login">
+        Remember your password? <a href="/login">Login here</a>
+      </div>
     </div>
+    </div>
+  </>
   );
 };
 

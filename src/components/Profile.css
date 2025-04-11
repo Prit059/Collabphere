@@ -1,0 +1,24 @@
+.profile-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.profile-details {
+  margin-top: 1.5rem;
+  line-height: 2;
+}
+
+.loading-spinner {
+  text-align: center;
+  margin: 2rem;
+  font-size: 1.2rem;
+}
+
+.error-message {
+  color: #d32f2f;
+  text-align: center;
+  margin: 2rem;
+}

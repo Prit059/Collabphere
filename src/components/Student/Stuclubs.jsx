@@ -14,10 +14,6 @@ const Clubs = () => {
     return savedClubs ? JSON.parse(savedClubs) : defaultClubs;
   });
 
-  const [showModal, setShowModal] = useState(false);
-  const [newClub, setNewClub] = useState({ name: "", description: "", faclty: "", student: "",image: "" });
-  const [showConfirm, setShowConfirm] = useState(false);
-  const [clubToRemove, setClubToRemove] = useState(null);
   const [showAll, setShowAll] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -49,62 +45,11 @@ const Clubs = () => {
     localStorage.setItem("clubs", JSON.stringify(clubs));
   }, [clubs]);
   
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsLoggedIn(false);
-    navigate('/login');
-    // No need for setShowConfirm(true) here unless it's for a different purpose
-  };
-
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setNewClub({ ...newClub, image: imageUrl });
-    }
-  };
+  
   const alret = () => {
     //custom alert 
     alert("Please Login...");
   }
-  const handleAddClub = async () => {
-    if (!newClub.name || !newClub.description || !newClub.faclty || !newClub.student) {
-        alert("All fields are required.");
-        return;
-    }
-
-    try {
-        const response = await fetch("http://localhost:5000/add-club", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                club_name: newClub.name,  // ✅ Ensure this matches the database column
-                description: newClub.description,
-                faclty: newClub.faclty,
-                student: newClub.student
-            }),
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.error || `HTTP error! Status: ${response.status}`);
-        }
-
-        alert(data.message);
-
-        // 🔥 Add new club directly to UI
-        setClubs([...clubs, { id: data.insertId, ...newClub }]);
-
-        // Clear form and close modal
-        setNewClub({ name: "", description: "", faclty: "", student: "" });
-        setShowModal(false);
-
-    } catch (error) {
-        console.error("Error adding club:", error);
-        alert("Error adding club: " + error.message);
-    }
-};
 
 
 
@@ -122,19 +67,6 @@ const fetchClubs = async () => {
 useEffect(() => {
   fetchClubs();
 }, []);
-
-
-
-  const handleConfirmRemove = (id) => {
-    setClubToRemove(id);
-    setShowConfirm(true);
-  };
-
-  const handleRemoveClub = () => {
-    setClubs(clubs.filter((club) => club.id !== clubToRemove));
-    setShowConfirm(false);
-    setClubToRemove(null);
-  };
 
   const handleSubmit = async () => {
     if (!formData.stuname || !formData.studentid || !formData.email || !formData.year || !formData.sem) {
@@ -181,7 +113,7 @@ useEffect(() => {
   
 
   return (
-    <section className="container-fluid highlights py-5 sec1" id="club-section">
+    <section className="container-fluid highlights py-5 sec1" id="club-section-student">
       <div className="container">
         <div className="row mb-4">
           <div className="col-12 text-center clubs">
@@ -190,8 +122,6 @@ useEffect(() => {
           </div>
         </div>
         
-        
-
         <div className="row gy-4 text-center top4">
           {clubs.slice(0, showAll ? clubs.length : 3).map((club) => (
             <div key={club.id} className="col-lg-4 col-sm-6 col-12">
@@ -213,9 +143,7 @@ useEffect(() => {
                       <Link id="in" to="/login">Explore</Link>
                     </button>
                   )}
-                  {isLoggedIn && (
-                  <button onClick={() => handleConfirmRemove(club.id)}>Remove</button>
-                  )}
+                 
                   {isLoggedIn ? (
                     <button onClick={() => setShowForm(true)}>Join</button>
                   ) : (
@@ -228,17 +156,6 @@ useEffect(() => {
               </div>
             </div>
           ))}
-
-        {isLoggedIn && (
-          <div className="col-lg-4 col-sm-6 col-12">
-            <div className="bg-white p-3 gap-3 shadow-lg book1 add-club" onClick={() => setShowModal(true)}>
-              <div className="details" id="addnew">
-                <i className="mb-3 fa-solid fa-plus"></i>
-                <h3>Add New Club</h3>
-              </div>
-            </div>
-          </div>
-        )}
         </div>
 
         {/* <div className="text-center mt-4">
@@ -247,36 +164,7 @@ useEffect(() => {
           </button>
         </div> */}
 
-        {isLoggedIn && showModal ? (
-          <div className="modal-overlay">
-            <div className="modal-content">
-              <h3>Add a New Club</h3>
-              <input type="text" placeholder="Club Name" value={newClub.name} onChange={(e) => setNewClub({ ...newClub, name: e.target.value })} />
-              <input type="text" placeholder="Description" value={newClub.description} onChange={(e) => setNewClub({ ...newClub, description: e.target.value })} />
-              <input type="text" placeholder="Faculty Name" value={newClub.faclty} onChange={(e) => setNewClub({ ...newClub, faclty: e.target.value })} />
-              <input type="text" placeholder="Student Coordinator Name" value={newClub.student} onChange={(e) => setNewClub({ ...newClub, student: e.target.value })} />
-              {/* Image Upload Field */}
-              <input type="file" accept="image/*" onChange={handleImageUpload} />
-      
-              {/* Preview the selected image */}
-              {newClub.image && <img src={newClub.image} alt="Preview" className="preview-img" />}
-              <button className="btn btn-success" onClick={handleAddClub}>Submit</button>
-              <button className="btn btn-danger" onClick={() => setShowModal(false)}>Cancel</button>
-            </div>
-          </div>
-        ):(
-          <div></div>
-        )}
-
-        {showConfirm && (
-          <div className="modal-overlay">
-            <div className="modal-content">
-              <h3>Are you sure you want to remove this club?</h3>
-              <button className="btn btn-danger" onClick={handleRemoveClub}>Yes, Remove</button>
-              <button className="btn btn-secondary" onClick={() => setShowConfirm(false)}>Cancel</button>
-            </div>
-          </div>
-        )}
+        
 
         {isLoggedIn && showForm && (
           

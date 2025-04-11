@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./HomePage.css"; 
 import "./media2.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const HomePage = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
@@ -28,15 +28,24 @@ const HomePage = () => {
     navigate("/login");
     setShowConfirm(true);
   };
-  const scrollToEvents = () => {
-    const eventsSection = document.getElementById('club-section');
+
+  const handleconfirm = () => {
+    // Perform action on confirm
+  }
+
+  const scrollToClub = () => {
+    const eventsSection = document.getElementById('club-section-student');
     if (eventsSection) {
       eventsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  const handleconfirm = () => {
-    // Perform action on confirm
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById('about-student');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
   }
+
   return (
     <main className="hm"> 
       <header className="container-fluid py-2 shadow-lg top-0">
@@ -54,17 +63,10 @@ const HomePage = () => {
             <div className="col-lg-8 col-12">
               <div className="btn-outer d-flex gap-3 justify-content-end but">
                 <Link  className="f">Home</Link>
-                <Link  className="f">About</Link>
-                <Link  className="f" onClick={scrollToEvents}>Clubs</Link>
+                <Link  className="f" onClick={scrollToAbout}>About</Link>
+                <Link  className="f" onClick={scrollToClub}>Clubs</Link>
                 <Link  className="f">FAQs</Link>
-
-                {!isLoggedIn ? (
-                  <div></div>
-                  
-                ):(
-                
-                  <Link to="/dashboard" className="f">Dashboard</Link>
-                )}
+                {/* <Link to="/dashboard" className="f">Dashboard</Link> */}
 
                 {/* Show Login/Signup if NOT logged in, otherwise show Logout */}
                 {!isLoggedIn ? (
@@ -145,7 +147,7 @@ const HomePage = () => {
                     </>
                   ) : (
                     <>
-                      <h5 id="hello">Hello Admin...</h5>
+                      <h5 id="hello">Hello  You Are Smart Student...</h5>
                     </>
                   )}
                  

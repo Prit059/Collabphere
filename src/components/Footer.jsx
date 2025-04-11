@@ -11,8 +11,7 @@ const Footer = () => {
         <div>
           <h2>About Us</h2>
           <p>
-            We bring the best experience for food lovers. Explore our wide range
-            of delicious meals and enjoy the taste!
+          Discover a world of dynamic events and engaging club activities that bring students together.
           </p>
         </div>
 
@@ -20,10 +19,10 @@ const Footer = () => {
         <div>
           <h2>Quick Links</h2>
           <ul>
-            <li><a href=".hm">Home</a></li>
-            <li><a href=".au">About Us</a></li>
-            <li><a href="/explore">Explore</a></li>
-            <li><a href="/clubs">Clubs</a></li>
+            <li><a href="">Home</a></li>
+            <li><a href="">About Us</a></li>
+            <li><a href="">Explore</a></li>
+            <li><a href="">Clubs</a></li>
           </ul>
         </div>
 
@@ -42,7 +41,7 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="footer-bottom">
-        &copy; 2025 STILL Hungry? | Designed with ❤️
+        &copy; 2025 Collabsphere? | Designed with ❤️
       </div>
     </footer>
   );
