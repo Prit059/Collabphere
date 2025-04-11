@@ -52,8 +52,9 @@ app.get("/student-counts", (req, res) => {
     const query = `
         SELECT 
             (SELECT COUNT(*) FROM students WHERE status = 'pending') AS pending_students,
-            (SELECT COUNT(*) FROM students WHERE status = 'accepted') AS total_students;
-    `;
+            (SELECT COUNT(*) FROM students WHERE status = 'accepted') AS accepted_students,
+            (SELECT COUNT(*) FROM students) AS total_students;
+        `;
 
     db.query(query, (err, result) => {
         if (err) {

@@ -61,8 +61,8 @@ app.post("/login", (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
 
-    const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: "1h" });
-    res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
+    const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: "1h" });
+    res.json({ token, user: { id: user.id, name: user.name, email: user.email,role: user.role } });
   });
 });
 
@@ -87,7 +87,10 @@ app.post("/forgot-password", (req, res) => {
     };
 
     transporter.sendMail(mailOptions, (err, info) => {
-      if (err) return res.status(500).json({ error: "Error sending email" });
+      if (err) {
+        console.error("Email error:", err); // Logs exact error
+        return res.status(500).json({ error: err.message });
+      }
       res.json({ message: "Password reset link sent to your email" });
     });
   });
@@ -112,5 +115,77 @@ app.post("/reset-password/:token", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
+const querystring = require('querystring');
+const axios = require('axios');
+
+app.get('/auth/callback', async (req, res) => {
+  const { code } = req.query;
+  
+  try {
+    // Exchange authorization code for tokens
+    const { data } = await axios.post('https://oauth2.googleapis.com/token', {
+      client_id: '174309633375-kdevml88gr8793kp2pn4f6qpel57iihe.apps.googleusercontent.com',
+      client_secret: 'YOUR_CLIENT_SECRET',
+      code,
+      redirect_uri: 'http://localhost:5173/auth/callback',
+      grant_type: 'authorization_code'
+    });
+
+    const { access_token, id_token } = data;
+
+    // Use access_token or id_token to fetch user profile
+    const { data: profile } = await axios.get('https://www.googleapis.com/oauth2/v1/userinfo', {
+      headers: { Authorization: `Bearer ${access_token}` }
+    });
+
+    // Check if user exists in your database or create new user
+    // Then generate your own JWT token and redirect
+    const token = generateYourJWTToken(profile); // Implement this function
+    
+    // Redirect to frontend with token
+    res.redirect('http://localhost:5173/?token=' + token);
+  } catch (error) {
+    console.error('Google OAuth error:', error);
+    res.redirect('http://localhost:5173?error=google_auth_failed');
+  }
+});
+
+// Profile endpoint
+// Add this middleware to verify JWT tokens
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  
+  if (!token) return res.status(401).json({ error: "Unauthorized" });
+
+  jwt.verify(token, process.env.JWT_SECRET || "your_jwt_secret", (err, user) => {
+    if (err) return res.status(403).json({ error: "Forbidden" });
+    req.user = user;
+    next();
+  });
+};
+
+// Updated profile endpoint
+app.get("/profile", authenticateToken, (req, res) => {
+  const userId = req.user.id; // Comes from the JWT token
+  
+  db.query(
+    "SELECT id, name, email FROM users WHERE id = ?", 
+    [userId],
+    (err, results) => {
+      if (err) {
+        console.error("Database error:", err);
+        return res.status(500).json({ error: "Database error" });
+      }
+      
+      if (results.length === 0) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      
+      res.json(results[0]);
+    }
+  );
+});
+
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
