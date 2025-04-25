@@ -57,6 +57,7 @@ const HomePage = () => {
                 <Link  className="f">About</Link>
                 <Link  className="f" onClick={scrollToEvents}>Clubs</Link>
                 <Link  className="f">FAQs</Link>
+                <Link  className="f" to="/profile">Profile</Link>
 
                 {!isLoggedIn ? (
                   <div></div>

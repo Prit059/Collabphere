@@ -114,3 +114,19 @@
   margin-bottom: 8px;
   display: block;
 }
+#capin{
+  color: #fff;
+}
+#capin input{
+  margin-top: 10px;
+}
+
+#cap {
+  width: 20%;
+  text-decoration: line-through;
+}
+
+.captcha{
+  display: flex;
+  gap: 15px;
+}

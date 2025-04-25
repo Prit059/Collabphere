@@ -80,7 +80,7 @@ const HomePage = () => {
                   </>
                 ) : (
                   <>
-                  {/* <Link to="/profile" className="f">Profile</Link> */}
+                  <Link to="/profile" className="f">Profile</Link>
                   <button className="btn btn-danger" onClick={handleLogout} >
                     Logout
                   </button>

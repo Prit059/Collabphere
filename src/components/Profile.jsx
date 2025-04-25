@@ -1,62 +1,47 @@
 import React, { useEffect, useState } from "react";
+import "./Profile.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-  const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  const [user, setUser] = useState("");
+  const [email,setemail] = useState("");
+  const [error, setError] = useState("");
 
-  useEffect(() => {
-    if (!token) {
-      navigate("/login");
-      return;
+  useEffect(()=>{
+    fetchUser();
+  }, []);
+
+  const fetchUser = async () => {
+    try {
+      const token = localStorage.getItem("token");
+  
+      const response = await axios.get("http://localhost:5001/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+  
+      setUser(response.data.user_name);
+      setemail(response.data.user_email);
+  
+    } catch (error) {
+      console.log("Error fetching user data:", error);
+      setError("Failed to fetch user data.");
     }
-
-    const fetchProfile = async () => {
-      try {
-        const response = await axios.get("http://localhost:5001/profile", {
-          headers: { 
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json"
-          }
-        });
-        
-        if (response.data) {
-          setProfile(response.data);
-        } else {
-          throw new Error("No data received");
-        }
-      } catch (err) {
-        console.error("Profile fetch error:", err);
-        setError(err.response?.data?.message || 
-                err.message || 
-                "Failed to fetch profile");
-        
-        if (err.response?.status === 401) {
-          localStorage.removeItem("token");
-          navigate("/login");
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProfile();
-  }, [token, navigate]);
-
-  if (loading) return <div>Loading profile...</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!profile) return <div>No profile data found</div>;
+  };
 
   return (
-    <div className="profile">
-      <h2>User Profile</h2>
-      <div>
-        <p><strong>Name:</strong> {profile.name}</p>
-        <p><strong>Email:</strong> {profile.email}</p>
+    <div className="profile-container">
+      <div className="profile-card">
+        <img src="/images/avatar.png" alt="Profile" className="avatar" />
+        {error ? (
+          <p className="error">{error}</p>
+        ) : (
+          <>
+            <h2>{user}</h2>
+            <p><strong>Email:</strong> {email}</p>
+          </>
+        )}
       </div>
     </div>
   );

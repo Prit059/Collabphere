@@ -59,8 +59,11 @@ const Clubs = () => {
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setNewClub({ ...newClub, image: imageUrl });
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewClub({...newClub, image: reader.result});  //base64 string
+      };
+      reader.readAsDataURL(file); // convert base64
     }
   };
   const alret = () => {
@@ -68,7 +71,7 @@ const Clubs = () => {
     alert("Please Login...");
   }
   const handleAddClub = async () => {
-    if (!newClub.name || !newClub.description || !newClub.faclty || !newClub.student) {
+    if (!newClub.name || !newClub.description || !newClub.faclty || !newClub.student || !newClub.image) {
         alert("All fields are required.");
         return;
     }
@@ -81,7 +84,8 @@ const Clubs = () => {
                 club_name: newClub.name,  // ✅ Ensure this matches the database column
                 description: newClub.description,
                 faclty: newClub.faclty,
-                student: newClub.student
+                student: newClub.student,
+                image: newClub.image 
             }),
         });
 
@@ -229,7 +233,9 @@ useEffect(() => {
             </div>
           ))}
 
-        {isLoggedIn && (
+        {!isLoggedIn ? (
+          <div></div>
+        ):(
           <div className="col-lg-4 col-sm-6 col-12">
             <div className="bg-white p-3 gap-3 shadow-lg book1 add-club" onClick={() => setShowModal(true)}>
               <div className="details" id="addnew">

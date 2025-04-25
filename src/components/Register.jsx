@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 
@@ -8,11 +8,14 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [captchaSolution, setCaptchaSolution] = useState("");
+  const captchaAnswerRef = useRef(null); // Use ref for captcha input
+  const [captchaError, setCaptchaError] = useState(false);
   const navigate = useNavigate();
 
   const validateForm = () => {
     let formErrors = {};
-    const gmailRegex = /^[ceCE0-9._%+-]+@charusat\.edu\.in$/;
+    const gmailRegex = /^[0-9]{2}[cC][eE][0-9]{3}@charusat\.edu\.in$/;
     const strongPassword = /^(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/;
 
     if (!name.trim()) formErrors.name = "Name is required";
@@ -20,7 +23,7 @@ const Register = () => {
     if (!email) {
       formErrors.email = "Email is required";
     } else if (!gmailRegex.test(email)) {
-      formErrors.email = "Email must Your College gmail address and CE-(Computer Department) Only Register";
+      formErrors.email = "Email must be Your College gmail address and CE-(Computer Department) Only Register";
     }
 
     if (!password) {
@@ -38,8 +41,32 @@ const Register = () => {
     return Object.keys(formErrors).length === 0;
   };
 
+  const generateCaptcha = (length = 6) => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let captcha = '';
+    for (let i = 0; i < length; i++) {
+      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    setCaptchaSolution(captcha);
+  };
+
+  useEffect(() => {
+    generateCaptcha();
+  }, []);
+
   const handleRegister = async (e) => {
     e.preventDefault();
+    // Check captcha answer from the ref
+    const captchaAnswer = captchaAnswerRef.current.value.trim();
+    if (captchaAnswer !== captchaSolution) {
+      document.getElementById('captcha-error').classList.remove('hidden');
+      generateCaptcha(); // Regenerate new captcha
+      setCaptchaError(true);
+      return;
+    } else {
+      setCaptchaError(false);
+    }
+
     if (!validateForm()) return;
 
     const response = await fetch("http://localhost:5001/register", {
@@ -104,7 +131,28 @@ const Register = () => {
           {errors.confirmPassword && (
             <span className="error">{errors.confirmPassword}</span>
           )}
-
+          <div className="flex items-center space-x-2" id="capin">
+            <div className="captcha">
+              <div>
+                CAPTCHA : 
+              </div>
+              <div className="font-bold px-1 py-1 rounded bg-gray-200 bg-white text-black text-lg tracking-widest select-none rotate-[2deg] skew-x-2"    id="cap">
+                {captchaSolution}
+              </div>
+            </div>
+            <input
+              ref={captchaAnswerRef}
+              type="text"
+              className="border border-gray-400 p-2 rounded w-20"
+              placeholder="ENTER VAILD CAPTCHA"
+              required
+            />
+          </div>
+          {captchaError && (
+          <span id="captcha-error" className="text-red-500 text-sm hidden">
+            Incorrect CAPTCHA. Try again
+          </span>
+          )}
           <button type="submit">Sign Up</button>
         </form>
 
