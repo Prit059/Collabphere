@@ -150,42 +150,90 @@ app.get('/auth/callback', async (req, res) => {
   }
 });
 
-// Profile endpoint
-// Add this middleware to verify JWT tokens
-const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-  
-  if (!token) return res.status(401).json({ error: "Unauthorized" });
 
-  jwt.verify(token, process.env.JWT_SECRET || "your_jwt_secret", (err, user) => {
-    if (err) return res.status(403).json({ error: "Forbidden" });
-    req.user = user;
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) return res.status(401).json({ error: "Access denied. No token provided." });
+
+  jwt.verify(token, JWT_SECRET, (err, user) => {
+    if (err) return res.status(403).json({ error: "Invalid token." });
+
+    req.user = user; // contains id and role
     next();
   });
-};
+}
 
-// Updated profile endpoint
+module.exports = authenticateToken;
+
 app.get("/profile", authenticateToken, (req, res) => {
-  const userId = req.user.id; // Comes from the JWT token
+  const userId = req.user.id;
   
-  db.query(
-    "SELECT id, name, email FROM users WHERE id = ?", 
-    [userId],
-    (err, results) => {
-      if (err) {
-        console.error("Database error:", err);
-        return res.status(500).json({ error: "Database error" });
-      }
+  const userQuery = `SELECT name, email FROM users WHERE id = ?`;
+  const profileQuery = `SELECT * FROM profiles WHERE user_id = ?`;
+
+  db.query(userQuery, [userId], (err, userResult) => {
+    if (err) return res.status(500).json({ error: "Database error" });
+    if (userResult.length === 0) return res.status(404).json({ error: "User not found" });
+
+    db.query(profileQuery, [userId], (err, profileResult) => {
+      if (err) return res.status(500).json({ error: "Database error" });
       
-      if (results.length === 0) {
-        return res.status(404).json({ error: "User not found" });
-      }
-      
-      res.json(results[0]);
-    }
-  );
+      const profileData = profileResult.length > 0 ? profileResult[0] : {};
+      res.json({
+        user_name: userResult[0].name,
+        user_email: userResult[0].email,
+        profile: {
+          bio: profileData.bio || "",
+          skills: JSON.parse(profileData.skills || "[]"),
+          education: JSON.parse(profileData.education || "[]"),
+          certifications: JSON.parse(profileData.certifications || "[]"),
+          interests: JSON.parse(profileData.interests || "[]"),
+          clubs: JSON.parse(profileData.clubs || "[]"),
+          socialLinks: JSON.parse(profileData.social_links || "{}")
+        }
+      });
+    });
+  });
 });
+
+app.put("/profile", authenticateToken, (req, res) => {
+  const userId = req.user.id;
+  const { bio, skills, education, certifications, interests, clubs, socialLinks } = req.body;
+
+  const query = `
+    INSERT INTO profiles (user_id, bio, skills, education, certifications, interests, clubs, social_links)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ON DUPLICATE KEY UPDATE
+      bio = VALUES(bio),
+      skills = VALUES(skills),
+      education = VALUES(education),
+      certifications = VALUES(certifications),
+      interests = VALUES(interests),
+      clubs = VALUES(clubs),
+      social_links = VALUES(social_links)
+  `;
+
+  db.query(query, [
+    userId,
+    bio,
+    JSON.stringify(skills),
+    JSON.stringify(education),
+    JSON.stringify(certifications),
+    JSON.stringify(interests),
+    JSON.stringify(clubs),
+    JSON.stringify(socialLinks)
+  ], (err, result) => {
+    if (err) {
+      console.log("Database error:", err);  // debug print
+      return res.status(500).json({ error: "Database error while saving profile" });
+    }
+    res.json({ message: "Profile saved successfully" });
+  });
+});
+
+
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
