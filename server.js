@@ -101,6 +101,53 @@ app.post("/add-club", (req, res) => {
     );
 });
 
+app.get("/clubs", (req, res) => {
+    db.query("SELECT * FROM clubs", (err, result) => {
+        if (err) {
+            console.error("Database fetch error:", err);
+            return res.status(500).json({ error: "Database fetch failed." });
+        }
+        res.json(result);
+    });
+});
+
+app.delete("/remove-club/:id", (req, res) => {
+    const clubId = req.params.id;
+    
+    db.query("DELETE FROM clubs WHERE id = ?", [clubId], (err, result) => {
+        if (err) {
+            console.error("Database error:", err);
+            return res.status(500).json({ error: "Failed to delete club" });
+        }
+        
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: "Club not found" });
+        }
+        
+        res.json({ message: "Club deleted successfully" });
+    });
+});
+
+app.put("/update-club/:id", (req, res) => {
+    const { club_name, description, faclty, student, image } = req.body;
+    const clubId = req.params.id;
+  
+    if (!club_name || !description || !faclty || !student) {
+      return res.status(400).json({ error: "All fields except image are required." });
+    }
+  
+    db.query(
+      "UPDATE clubs SET club_name = ?, description = ?, faclty = ?, student = ?, image = ? WHERE id = ?",
+      [club_name, description, faclty, student, image, clubId],
+      (err, result) => {
+        if (err) {
+          console.error("Database error:", err);
+          return res.status(500).json({ error: "Database update failed." });
+        }
+        res.json({ message: "Club updated successfully!" });
+      }
+    );
+  });
 
 // Start server on a single port
 app.listen(5000, () => console.log("Server running on port 5000"));
