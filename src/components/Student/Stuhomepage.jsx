@@ -80,7 +80,7 @@ const HomePage = () => {
                   </>
                 ) : (
                   <>
-                  <Link to="/profile" className="f">Profile</Link>
+                  <Link to="/stuprofile" className="f">Profile</Link>
                   <button className="btn btn-danger" onClick={handleLogout} >
                     Logout
                   </button>
@@ -106,7 +106,7 @@ const HomePage = () => {
                 <Link to="/" className="f">About</Link>
                 <Link to="/" className="f">Clubs</Link>
                 <Link to="/" className="f">FAQs</Link>
-                <Link to="/dashboard" className="f">Dashboard</Link>
+                {/* <Link to="/dashboard" className="f">Dashboard</Link> */}
 
                 {/* Show Login/Signup if NOT logged in, otherwise show Logout */}
                 {!isLoggedIn ? (
@@ -120,7 +120,7 @@ const HomePage = () => {
                   </>
                 ) : (
                   <>
-                    {/* <Link to="/profile" className="f">Profile</Link> */}
+                    <Link to="/stuprofile" className="f">Profile</Link>
                   <button className="btn btn-danger" onClick={handleLogout} >
                     Logout
                   </button>

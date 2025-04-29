@@ -17,6 +17,8 @@ import BenefitsSection from "./components/BenefitsSection";
 import StatsSection from "./components/StatsSection";
 import EventsSection from "./components/EventsSection";
 import ClubFooter from "./components/ClubFooter";
+import StuEventsSection from "./components/Student/StuEventsSection";
+import StuProfile from "./components/Student/StuProfile";
 // import Profile from "./components/Profile";
 // import ResetPassword from "./components/ResetPassword";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -59,6 +61,18 @@ function Clubsevent(){
     </>
   )
 }
+
+function StuClubsevent(){
+  return(
+    <>
+      <HeroSection />
+      <BenefitsSection />
+      <StatsSection />
+      <StuEventsSection />
+      <ClubFooter />
+    </>
+  )
+}
 function App() {
   return (
     <div>
@@ -73,6 +87,8 @@ function App() {
           <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/stu" element={<StudentLayout />} />
           <Route path="/event" element={<Clubsevent />} />
+          <Route path="/stuevent" element={<StuClubsevent />} />
+          <Route path="/stuprofile" element={<StuProfile />} />
           {/* <Route path="/reset-password" element={<ResetPassword />} /> */}
           <Route path="/profile" element={<Profile />} />
         </Routes>

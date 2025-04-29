@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './EventsSection.css';
+import './StuEventsSection.css';
 import { useEffect } from 'react';
 
 
@@ -357,7 +357,7 @@ const EventsSection = () => {
           >
             Upcoming Events
           </button>
-          <button
+          {/* <button
             className={`tab-button ${activeTab === 'add' ? 'active' : ''}`}
             onClick={() => setActiveTab('add')}
           >
@@ -368,12 +368,12 @@ const EventsSection = () => {
             onClick={() => setActiveTab('dashboard')}
           >
             Club Dashboard
-          </button>
+          </button> */}
         </div>
 
         {activeTab === 'add' ? (
           <div className="add-event-form">
-            <h3 className='neweventh3'>{editingEvent ? 'Edit Event' : 'Add New Event'}</h3>
+            <h3>{editingEvent ? 'Edit Event' : 'Add New Event'}</h3>
             {successMessage && (
               <div className="success-message">
                 {successMessage}
@@ -546,7 +546,7 @@ const EventsSection = () => {
                       <span className="detail-icon">👥</span>
                       {event.attendees} attending
                     </div>
-                    <div className="event-actions">
+                    {/* <div className="event-actions">
                       <button 
                         className="edit-button"
                         onClick={() => handleEditClick(event)}
@@ -561,7 +561,7 @@ const EventsSection = () => {
                       >
                         🗑️
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

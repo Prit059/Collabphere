@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./clubs.css";
+import "./stuclubs.css";
 import "./clubs_media.css";
 import { Navigate, useNavigate, Link } from "react-router-dom";
 
@@ -54,20 +54,18 @@ const Clubs = () => {
 
 
 const fetchClubs = async () => {
-  try {
+    try {
       const response = await fetch("http://localhost:5000/clubs");
       const data = await response.json();
       setClubs(data);
-  } catch (error) {
+    } catch (error) {
       console.error("Error fetching clubs:", error);
-  }
-};
+    }
+  };
 
-// Fetch clubs when component loads
-useEffect(() => {
-  fetchClubs();
-}, []);
-
+  useEffect(() => {
+    fetchClubs();
+  }, []);
   const handleSubmit = async () => {
     if (!formData.stuname || !formData.studentid || !formData.email || !formData.year || !formData.sem) {
       alert("Please fill in all fields.");
@@ -137,7 +135,7 @@ useEffect(() => {
                 </div>
                 <div className="ej">
                   {isLoggedIn ? (
-                    <button><Link id="in" to="/event">Explore</Link></button>
+                    <button><Link id="in" to="/stuevent">Explore</Link></button>
                   ) : (
                     <button onClick={()=> alret()}>
                       <Link id="in" to="/login">Explore</Link>
@@ -157,25 +155,26 @@ useEffect(() => {
             </div>
           ))}
         </div>
+        
 
-        {/* <div className="text-center mt-4">
+        <div className="text-center mt-4">
           <button className="btn btn-primary load-more-btn" onClick={() => setShowAll(!showAll)}>
             {showAll ? "Show Less ▲" : "Load More ▼"}
           </button>
-        </div> */}
+        </div> 
 
         
 
         {isLoggedIn && showForm && (
           
-          <div className="modal-overlay">
-            <div className="modal-content">
+          <div className="modal-overlay-join">
+            <div className="modal-content-join">
               <h3>Join Club</h3>
               {Object.keys(formData).map((key) => (
                 <input key={key} type="text" placeholder={key} value={formData[key]} onChange={(e) => setFormData({ ...formData, [key]: e.target.value })} />
               ))}
-              <button className="btn btn-success" onClick={handleSubmit}>Submit</button>
-              <button className="btn btn-danger" onClick={() => setShowForm(false)}>Close</button>
+              <button id="join-sub" className="btn btn-success" onClick={handleSubmit}>Submit</button>
+              <button id="join-close" className="btn btn-danger" onClick={() => setShowForm(false)}>Close</button>
             </div>
           </div>
         )}

@@ -5,7 +5,7 @@
   .bannerContent h1{
     font-size: 50px;
     font-weight: 500;
-    transform: translate(18.5%,00%);
+    transform: translate(12.5%,00%);
   }
 
   .btu2{
@@ -125,7 +125,7 @@
   }
   .bannerContent p{
     font-size: 25px;
-    transform: translate(9.1%,00%);
+    transform: translate(4.1%,00%);
   }
   .bannerContent li{
     font-size: 20px !important;
@@ -165,7 +165,7 @@
 
   #hello{
     font-size: 4.9vw;
-    transform: translate(-20%,150%);
+    transform: translate(-30%,150%);
   }
   
 }

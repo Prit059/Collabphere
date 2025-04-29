@@ -60,11 +60,6 @@
 /* Modal Overlay */
 .modal-overlay {
   position: fixed;
-  top: 22%;
-  left: 27%;
-  width: 50%;
-  height: 70%;
-  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(15px);
   display: flex;
   justify-content: center;
@@ -73,85 +68,190 @@
 }
 
 /* Modal Box */
-.modal-content {
-  background: white;
+.club-form-modal{
+  position: fixed;
+  top: 5%;
+  left: 34%;
+  /* width: 50%; */
+  height: 90%;
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal is on top */
+}
+/* Modal Box */
+.club-form-modal .modal-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(172deg, #00030b, #063054) !important;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
 }
-
-/* Disable background scrolling when modal is open */
-body.modal-open {
-  overflow: hidden;
+/* Modal Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
-
-/* Button Styling */
-.modal-content input {
-  width: 100%;
-  padding: 8px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-.modal-content h3{
+/* Modal Title */
+.modal-title {
+  font-size: 24px;
   color: #fff;
 }
-.c1{
-  margin-top: 10px;
-}
-.modal-content button {
-  width: 30%;
-  padding: 10px;
-  margin: 5px 0 5px 250px;
+/* Close Button */
+.close-btn {
+  background: transparent;
   border: none;
-  font-size: 1.2vw;
+  font-size: 24px;
+  color: #fff;
   cursor: pointer;
 }
-
-.modal-content .btn-success {
-  background: linear-gradient(to right,#0ACEFE,#26999B);
-  color: white;
+/* Close Button Hover Effect */
+.close-btn:hover {
+  color: #0ef;
+  transform: scale(1.2);
+  transition: 0.3s;
 }
-
-.modal-content .btn-danger {
-  background: linear-gradient(to right,#0ACEFE,#26999B);
-  color: white;
-}
-
-
-.add-club {
-  cursor: pointer;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s, background 0.3s;
-}
-
-.add-club:hover {
-  transform: scale(1.05);
-  background: #f8f8f8;
-}
-#addnew{
-  /* margin-top: 4vw; */
-  height: 200px;
+/* Modal Body */
+.modal-body {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  transform: translate(0%,35%);
+  height: 100%;
+}
+/* Modal Form */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+/* Modal Form Input */
+.modal-form input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+/* Modal Form Input Focus Effect */
+.modal-form input:focus {
+  outline: none;
+  border: 4px solid #0ef;
+  background: rgba(255, 255, 255, 0.2);
 }
 
-.preview-img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-top: 10px;
+#clubsubmit{
+  margin-top: 20px;
+  padding: 0.7vw 1.5vw;
+  background: linear-gradient(to right,#0ACEFE,#26999B);
+  border-radius: 9px;
+  border: transparent;
+  transform: translate(-90%);
+  color: #fff;
+}
+#clubsubmit:hover{
+  border-radius: 0 19px 0 19px;
+  transition: .4s;
+}
+#clubcancel{
+  /* margin-top: 20px; */
+  padding: 0.7vw 1.5vw;
+  background: linear-gradient(to right,#0ACEFE,#26999B);
+  border-radius: 9px;
+  border: transparent;
+  transform: translate(-90%);
+}
+#clubcancel:hover{
+  border-radius: 19px 0px 19px 0px;
+  transition: .4s;
 }
 
-.club-image {
-  width: 30%;
-  height: 100px;
-  object-fit: cover;
+.club-form-modal-con{
+  position: fixed;
+  top: 22%;
+  left: 34%;
+  /* width: 50%; */
+  height: 40%;
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal is on top */
+}
+.modal-content-con{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(172deg, #00030b, #063054) !important;
+  padding: 20px;
   border-radius: 10px;
-  margin-bottom: 10px;
+  text-align: center;
+}
+.form-title-confirm{
+  transform: translate(0%,320%);
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.button-container-con{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.submit-btn-con{
+  padding: 0.7vw 1.5vw;
+  background: linear-gradient(to right,#0ACEFE,#26999B);
+  border-radius: 9px;
+  border: transparent;
+  transform: translate(0%,270%);
+  color: #fff;
+}
+.submit-btn-con:hover{
+  border-radius: 0 19px 0 19px;
+  transition: .4s;
+}
+
+.cancel-btn-con{
+  padding: 0.7vw 1.5vw;
+  background: linear-gradient(to right,#0ACEFE,#26999B);
+  border-radius: 9px;
+  border: transparent;
+  color: #fff;
+  transform: translate(0%,270%);
+}
+
+.club-form-modal-join{
+  position: fixed;
+  top: 5%;
+  left: 34%;
+  /* width: 50%; */
+  height: 90%;
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal is on top */
+}
+/* Modal Box */
+.club-form-modal-join .modal-content-join {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(172deg, #00030b, #063054) !important;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
 }

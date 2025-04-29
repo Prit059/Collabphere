@@ -11,6 +11,9 @@ const Register = () => {
   const [captchaSolution, setCaptchaSolution] = useState("");
   const captchaAnswerRef = useRef(null); // Use ref for captcha input
   const [captchaError, setCaptchaError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -114,23 +117,37 @@ const Register = () => {
           />
           {errors.email && <span className="error">{errors.email}</span>}
 
-          <input
-            type="password"
-            placeholder="Password (min 8 chars, number & special char)"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {errors.password && <span className="error">{errors.password}</span>}
+          <div className="password-wrapper">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password (min 8 chars, number & special char)"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <i
+              className={`fa-solid ${showPassword ? "fa-eye-slash" : "fa-eye"} eye-icon`}
+              onClick={() => setShowPassword((prev) => !prev)}
+            ></i>
+        </div>
+        {errors.password && <span className="error">{errors.password}</span>}
 
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+
+          <div className="password-wrapper">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <i
+              className={`fa-solid ${showConfirmPassword ? "fa-eye-slash" : "fa-eye"} eye-icon`}
+              onClick={() => setShowConfirmPassword((prev) => !prev)}
+            ></i>
+          </div>
           {errors.confirmPassword && (
             <span className="error">{errors.confirmPassword}</span>
           )}
+
           <div className="flex items-center space-x-2" id="capin">
             <div className="captcha">
               <div>
@@ -149,7 +166,7 @@ const Register = () => {
             />
           </div>
           {captchaError && (
-          <span id="captcha-error" className="text-red-500 text-sm hidden">
+          <span className="invaildcaptch">
             Incorrect CAPTCHA. Try again
           </span>
           )}

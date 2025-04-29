@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./Profile.css";
+import "./StuProfile.css";
 import axios from "axios";
 
 const Profile = () => {
@@ -278,7 +278,9 @@ const Profile = () => {
             {progress < 100 ? "Complete Profile" : "Edit Profile"}
           </button>
         )}
-        <button className="HomeMain"><Link to="/">HOME</Link></button>
+        <button className="HomeMain">
+          <Link to="/stu" id="Homelink">HOME</Link>
+        </button>
       </div>
 
       {error && <p className="error">{error}</p>}

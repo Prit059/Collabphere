@@ -319,3 +319,12 @@ figure img{
   font-size: 2vw;
   transform: translate(-25%,178%);
 }
+
+.cyberhome{
+  transform: translate(-400%,-700%);
+  padding: 10px;
+  background: #0ef;
+  border-radius: 10px;  
+  font-size: 20px;
+  font-weight: 500; 
+}
