@@ -1,0 +1,398 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #4a90e2, #63b3ed);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    animation: fadeInUp 1s ease-out 0.3s;
+    opacity: fixed;
+}
+
+/* Added styling for the "Join" button */
+.join-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #4a90e2;
+    color: white;
+    text-decoration: none;
+    border-radius: 1100px;
+    margin-top: 2rem;
+    transition: background 0.3s ease;
+}
+
+.join-button:hover {
+    background: #63b3ed;
+}
+
+/* Profiles Section */
+.profiles {
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 2rem auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 2rem;
+}
+
+.profile.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.profile:nth-child(even) {
+    flex-direction: row;
+}
+
+.profile img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info {
+    padding: 0 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.profile-info h2 {
+    font-size: 2rem;
+    color: #4a90e2;
+    margin-bottom: 0.5rem;
+}
+
+.profile-info p {
+    font-size: 1.2rem;
+    margin: 0.2rem 0;
+    line-height: 1.5;
+}
+
+/* Stats Section */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 4rem 2rem;
+    background: linear-gradient(45deg, #4a90e2, #63b3ed);
+    color: white;
+}
+
+.stat-box {
+    text-align: center;
+    padding: 5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.counter {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    animation: countUp 2s ease-in-out forwards;
+}
+
+/* Events Section */
+.events {
+    padding: 4rem 2rem;
+    background: #c1bed4c0;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    padding: 1rem 2rem;
+    border: none;
+    background: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: #666;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    color: #4a90e2;
+    border-bottom-color: #4a90e2;
+}
+
+.tab-content {
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tab-content.active {
+    display: grid;
+}
+
+.event-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.event-card h3,
+.event-card p {
+    padding: 1rem;
+}
+
+/* Benefits Section */
+.benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.benefit-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Reviews Section */
+.reviews {
+    padding: 4rem 2rem;
+    background: #fff;
+}
+
+.reviews h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.reviews-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem 0;
+    justify-content: flex-start;
+}
+
+.review-card {
+    width: calc(33.33% - 2rem);
+    min-width: 300px;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#review-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#review-form input,
+#review-form textarea {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#review-form button {
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #4a90e2, #63b3ed);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.3s;
+}
+
+#review-form button:hover {
+    transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes countUp {
+    from {
+        counter-reset: count 0;
+    }
+
+    to {
+        counter-reset: count var(--target);
+    }
+}
+
+/* Popup Styles */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker background */
+}
+
+.popup-content {
+    background-color: #ffffff; /* White background */
+    margin: 10% auto; /* Center the popup */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.4s ease-out;
+    text-align: center; /* Center text */
+}
+
+.popup-content h2#popup-title {
+    font-size: 28px;
+    color: #4a90e2; /* Magic color */
+    font-family: 'Helvetica Neue', sans-serif;
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-transform: uppercase; /* Optional: Make title uppercase */
+    letter-spacing: 0.5px;
+}
+
+.popup-content .form-group {
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+.popup-content input[type="text"],
+.popup-content textarea {
+    width: 100%; /* Full width */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.popup-content .post-button {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px; /* More rounded */
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Arial', sans-serif;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px; /* Space above the button */
+}
+
+.popup-content .post-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#image-preview {
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Optional: Style for the file input label */
+.popup-content input[type="file"] + img {
+    margin-top: 10px;
+}
+
+

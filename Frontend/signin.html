@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Qpay Sign In</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #00c6ff, #0072ff, #ff7e5f, #feb47b);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-2xl font-bold text-center mb-2">Sign in to CollabSphere</h2>
+        <p class="text-center text-gray-600 mb-6">Welcome back! Sign in to access your account.</p>
+        <form id="signin-form" class="space-y-4" onsubmit="return validateSignIn()">
+            <div>
+                <input id="email" class="w-full border border-gray-400 p-2 rounded" placeholder="EMAIL ADDRESS"
+                    type="email" />
+                <span id="email-error" class="text-red-500 text-sm hidden">Please enter a valid email address.</span>
+            </div>
+            <div class="relative">
+                <input id="password" class="w-full border border-gray-400 p-2 rounded" placeholder="PASSWORD"
+                    type="password" />
+                <i class="fas fa-eye absolute right-3 top-3 text-gray-500 cursor-pointer"
+                    onclick="togglePasswordVisibility()"></i>
+                <span id="password-error" class="text-red-500 text-sm hidden">Please enter your password.</span>
+            </div>
+            <button class="w-full bg-black text-white py-2 rounded" type="submit">SIGN IN</button>
+        </form>
+        <div class="text-center my-4 text-gray-600">OR</div>
+        <div class="flex justify-center space-x-4">
+            <a href="https://accounts.google.com/o/oauth2/auth?client_id=YOUR_GOOGLE_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&scope=profile email&response_type=code">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Sign in with Google
+                </button>
+            </a>
+        </div>
+        <DIV>
+            <a href="forgot-password.html" class="text-blue-500">Forgot your password?</a>
+        </DIV>
+        <div class="text-center mt-4">
+            <a href="signup.html" class="text-blue-500">Don't have an account? Sign up</a>
+        </div>
+    </div>
+    <footer class="absolute bottom-4 text-center w-full text-gray-600 text-sm">
+        © 2021 - 2025 All Rights Reserved. Qpay.
+    </footer>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById("password");
+            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+            passwordInput.setAttribute("type", type);
+            // Toggle the eye icon
+            const eyeIcon = document.querySelector(".fa-eye");
+            eyeIcon.classList.toggle("fa-eye-slash");
+        }
+
+        function validateSignIn() {
+            // Retrieve stored user data from local storage
+            const storedUserData = localStorage.getItem('userData');
+
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+
+                // Get entered email and password from the sign-in form
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                // Check if the entered email and password match the stored data
+                if (email === userData.email && password === userData.password) {
+                    // Successful login - you can redirect to a dashboard or home page
+                    alert('Sign in successful!'); // Replace with your desired action
+                    return false; // Prevent the form from actually submitting
+                }
+            }
+
+            // If no matching data is found, display an error message
+            alert('Invalid credentials. Please check your email and password.');
+            return false; // Prevent the form from actually submitting
+        }
+    </script>
+</body>
+
+</html>

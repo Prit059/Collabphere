@@ -1,0 +1,96 @@
+@media only screen and (min-width: 200px) and (max-width:575px){
+  .hero{
+      width: 100% !important;
+      height: 740px !important;
+  }
+
+  .hero-content h1{
+    font-size: 55px;
+  }
+  .hero-content p{
+    font-size: 18px;
+  }
+  .hero-content a{
+    padding: 15px;
+  }
+  .profile{
+    padding: 12px;
+    margin-left: -10px;
+    flex-direction: column;
+    width: 102% !important;
+  }
+  
+  .profile-image img{
+    width: 100%;
+    padding: 5px;
+    height: 200px !important;
+  }
+  .profile-info h2{
+    font-size: 30px;
+  }
+  .profile-info p{
+    font-size: 14px;
+  }
+  .profile:nth-child(even){
+    flex-direction: column;
+  }
+  .profile:nth-child(even) img{
+    width: 100%;
+    padding: 5px;
+  }
+
+  .stats{
+    flex-direction: column;
+    width: 100% !important;
+    padding: 20px;
+  }
+  .stat-box{
+    padding: 50px;
+  }
+
+
+  .tabs{
+    width: 100% !important;
+  }
+  .tabs button{
+    font-size: 15px;
+  }
+
+  #current{
+    width: 100%;
+  }
+  .events{
+    /* background: #000; */
+    width: 100%;
+  }
+  .tab-content{
+    padding: 0;
+    margin: 0;
+  }
+  .event-card{
+    width: 100%;
+  }
+  .popup{
+    width: 100%;
+  }
+  #popup-title{
+    font-size: 23px !important;
+  }
+
+  .benefits{
+    margin: 0;
+    margin-top: 5px;
+    padding: 0;
+    width: 100%;
+  }
+
+  #review-form input{
+    width: 100%;
+  }
+  #review-form textarea{
+    width: 100%;
+  }
+  #review-form button{
+    width: 100%;
+  }
+}

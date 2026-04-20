@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI/ML Club</title>
+    <link rel="stylesheet" href="AiML.css">
+    <link rel="stylesheet" href="AiMLmedia.css">
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AI/ML Club</h1>
+            <p>Empowering the next generation of AI innovators</p>
+            <a href="#" class="join-button">Join Us!</a>
+        </div>
+    </section>
+
+    <!-- Profiles Section -->
+    <section class="profiles">
+        <div class="profile">
+            <div class="profile-image">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="Club Head">
+            </div>
+            <div class="profile-info">
+                <h2>Mrugendar Rahevar</h2>
+                <p>Club Head</p>
+                <p>Department: Computer Enginnering</p>
+                <p>Expertise: Machine Learning</p>
+            </div>
+        </div>
+        <div class="profile">
+            <div class="profile-image">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40" alt="Club Leader">
+            </div>
+            <div class="profile-info">
+                <h2>Manav Vasi</h2>
+                <p>Club Leader</p>
+                <p>Department: AI/ML</p>
+                <p>Expertise: Deep Learning</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stat-box">
+            <h3 class="counter" data-target="100">0</h3>
+            <p>Members To Join</p>
+        </div>
+        <div class="stat-box">
+            <h3 class="counter" data-target="25">0</h3>
+            <p>More Activities</p>
+        </div>
+        <div class="stat-box">
+            <h3 class="counter" data-target="15">0</h3>
+            <p>Events</p>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="current">Current Events</button>
+            <button class="tab-btn" data-tab="upcoming">Upcoming Events</button>
+            <button class="tab-btn" id="add-event-btn">Add Event</button>
+        </div>
+        <div class="tab-content active" id="current">
+            <div class="event-card">
+                <img src="https://images.unsplash.com/photo-1455849318743-b2233052fcff" alt="Workshop">
+                <h3>AI Workshop Series</h3>
+                <p>Weekly hands-on workshops covering fundamental AI concepts</p>
+            </div>
+            <div class="event-card">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="Hackathon">
+                <h3>Machine Learning Hackathon</h3>
+                <p>48-hour challenge to build innovative ML solutions</p>
+            </div>
+        </div>
+        <div class="tab-content" id="upcoming">
+            <!-- Events will be dynamically added here -->
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="benefit-card">
+            <div class="benefit-icon">🤝</div>
+            <h3>Networking</h3>
+            <p>Connect with like-minded individuals and industry professionals</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">📚</div>
+            <h3>Skill Development</h3>
+            <p>Hands-on experience with cutting-edge AI/ML technologies</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">🎓</div>
+            <h3>Placement Guidance</h3>
+            <p>Career counseling and interview preparation support</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">👥</div>
+            <h3>Group Activities</h3>
+            <p>Collaborative projects and team-based learning experiences</p>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <h2>Member Reviews</h2>
+        <div class="reviews-container"></div>
+        <form id="review-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <textarea id="review" placeholder="Your Review" required></textarea>
+            <div class="rating">
+                <!-- <label>Rating:</label>
+                <div class="star-rating">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </div> -->
+            </div>
+            <button type="submit">Submit Review</button>
+        </form>
+    </section>
+    <!-- Popup for adding/editing new events -->
+    <!-- Popup for adding/editing new events -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn">&times;</span>
+        <h2 id="popup-title">Add New Event</h2>
+        <input type="hidden" id="event-id">
+        
+        <div class="form-group">
+            <label for="event-name">Event Name:</label>
+            <input type="text" id="event-name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="event-description">Description:</label>
+            <textarea id="event-description" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="registration-duration">Registration Date:</label>
+            <input type="date" id="registration-duration" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="event-time">Event Time:</label>
+            <input type="time" id="event-time" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="event-image">Event Image:</label>
+            <input type="file" id="event-image" accept="image/*">
+            <img id="image-preview" src="#" alt="Image Preview" style="max-width:100%; display:none;">
+        </div>
+        
+        <div class="form-group">
+            <label for="registration-link">Registration Link:</label>
+            <input type="url" id="registration-link" placeholder="https://example.com/register" required>
+        </div>
+        
+        <button id="submit-event" class="post-button">Post Event</button>
+    </div>
+</div>
+
+    <script src="AiML.js"></script>
+</body>
+
+</html>
